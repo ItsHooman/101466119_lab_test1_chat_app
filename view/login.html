@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+        async function login(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("username", data.username);
+                alert("Login successful! Redirecting to chat...");
+                window.location.href = "/chat"; // Redirect to chat page
+            } else {
+                alert("Login failed: " + data.message);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Login</h2>
+    <form onsubmit="login(event)">
+        <input type="text" id="username" placeholder="Enter Username" required>
+        <input type="password" id="password" placeholder="Enter Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="/signup">Signup here</a></p>
+</body>
+</html>

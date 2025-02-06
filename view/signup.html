@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Chat Room</title>
+</head>
+<body>
+    <h1>Join a Chat Room</h1>
+    
+    <form action="/join" method="POST">
+        <input type="text" name="username" placeholder="Enter your username" required>
+
+        <!-- Dropdown for predefined rooms -->
+        <label for="room">Select a Room:</label>
+        <select name="room" required>
+            <option value="devops">DevOps</option>
+            <option value="cloud-computing">Cloud Computing</option>
+            <option value="covid19">COVID-19</option>
+            <option value="sports">Sports</option>
+            <option value="nodejs">NodeJS</option>
+        </select>
+
+        <button type="submit">Join</button>
+    </form>
+</body>
+</html>
